@@ -23,7 +23,15 @@ public slots:
 
 
 private:
-    QString mCollection = "AnonsCihazları";
+    QString mCollection = "AnonsCihazlari";
+
+    QString mCihazAdi = "cihazadi";
+
+    QString mLatitude = "latitude";
+
+    QString mLongtitude = "longtitude";
+
+    QString mMahalle = "mahalle";
 };
 
 #endif // DBKEY_H
