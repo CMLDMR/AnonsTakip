@@ -14,7 +14,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    cppsrc/dbkey.cpp
+    cppsrc/dbkey.cpp \
+    cppsrc/utility.cpp
 
 RESOURCES += qml.qrc
 
@@ -31,7 +32,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     ../url.h \
-    cppsrc/dbkey.h
+    cppsrc/dbkey.h \
+    cppsrc/utility.h
 
 
 
