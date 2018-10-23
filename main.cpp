@@ -10,6 +10,7 @@
 #include "qmlmongodb.h"
 
 #include "cppsrc/dbkey.h"
+#include "cppsrc/utility.h"
 #include "../url.h"
 
 int main(int argc, char *argv[])
@@ -27,6 +28,8 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("DBKey",new DBKey());
 
     engine.rootContext()->setContextProperty("db",new QMLMongoDB());
+
+    engine.rootContext()->setContextProperty("Utility",new Utility());
 
 
 
