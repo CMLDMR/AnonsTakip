@@ -3,5 +3,6 @@
         <file>main.qml</file>
         <file>Login/Login.qml</file>
         <file>ErrorDialog.qml</file>
+        <file>qmlsrc/AddNewDevice.qml</file>
     </qresource>
 </RCC>
