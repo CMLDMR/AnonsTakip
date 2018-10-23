@@ -8,6 +8,8 @@ Item {
     id: item
     anchors.fill: parent
 
+    signal success();
+
 
     Rectangle {
         width: parent.width > 900 ? 900 : parent.width
@@ -40,6 +42,7 @@ Item {
                         font.family: "Tahoma"
                         width: parent.width
                         height: parent.height
+                        text: "05326778051"
                         Text {
                             text: qsTr("Telefon Numarası Giriniz")
                             font.bold: true
@@ -66,6 +69,7 @@ Item {
                         width: parent.width
                         height: parent.height
                         echoMode: TextInput.Password
+                        text: "64091"
                         Text {
                             text: qsTr("Şifre Giriniz")
                             font.bold: true
@@ -116,9 +120,12 @@ Item {
 
         var count  = db.count("Personel",filter);
 
-        if( count )
+        print ( "Count: " + count );
+
+        if( count > 0 )
         {
-            item.destroy();
+            success();
+            print ("Emit Success");
         }else{
             Utility.errorMessage = "Hatalı Bilgi Girişi Yaptınız. Tekrar Deneyiniz"
         }
