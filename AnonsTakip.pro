@@ -1,5 +1,5 @@
 QT += quick
-CONFIG += c++11
+CONFIG += c++14
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked deprecated (the exact warnings
@@ -13,7 +13,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        main.cpp
+        main.cpp \
+    cppsrc/dbkey.cpp
 
 RESOURCES += qml.qrc
 
@@ -27,3 +28,40 @@ QML_DESIGNER_IMPORT_PATH =
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+HEADERS += \
+    ../url.h \
+    cppsrc/dbkey.h
+
+
+
+
+win32{
+
+    message("* using settings for windows");
+
+    unix|win32: LIBS += -L$$PWD/mingw32-windows-release-v0.7/lib/ -lQMongoDB
+
+    INCLUDEPATH += $$PWD/mingw32-windows-release-v0.7/include
+    DEPENDPATH += $$PWD/mingw32-windows-release-v0.7/include
+
+}
+
+android{
+    message("* using settings for android");
+
+
+    LIBS += -L$$PWD/android-release-v0.7/libs/armeabi-v7a/ -lbson-1.0 -lmongoc-1.0 -lQMongoDB
+    INCLUDEPATH += $$PWD/android-release-v0.7/include/
+    DEPENDPATH += $$PWD/android-release-v0.7/include/
+
+}
+
+contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
+    ANDROID_EXTRA_LIBS = \
+        $$PWD/android-release-v0.7/libs/armeabi-v7a/libbson-1.0.so \
+        $$PWD/android-release-v0.7/libs/armeabi-v7a/libcrypto.so \
+        $$PWD/android-release-v0.7/libs/armeabi-v7a/libmongoc-1.0.so \
+        $$PWD/android-release-v0.7/libs/armeabi-v7a/libQMongoDB.so \
+        $$PWD/android-release-v0.7/libs/armeabi-v7a/libssl.so
+}
