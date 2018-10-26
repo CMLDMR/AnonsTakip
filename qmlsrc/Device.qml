@@ -69,12 +69,28 @@ Item {
                     height: 50
                     color: "FireBrick"
                     Text {
-                        text: qsTr("Açıklama Ekle")
+                        text: qsTr("Açıklama Ekle+")
                         font.bold: true
                         font.pointSize: 10
                         font.family: "Tahoma"
                         color: "white"
                         anchors.centerIn: parent
+                    }
+                    MouseArea{
+                        anchors.fill: parent
+                        onClicked: {
+
+
+
+                            var com = Qt.createComponent("qrc:/qmlsrc/AciklamaEkle.qml");
+
+                            if( com.status === Component.Ready )
+                            {
+                                var e = com.createObject(item,{"oid":oid});
+                            }else{
+                                print ("Component Not Ready");
+                            }
+                        }
                     }
                 }
 

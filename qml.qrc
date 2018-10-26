@@ -5,5 +5,7 @@
         <file>ErrorDialog.qml</file>
         <file>qmlsrc/AddNewDevice.qml</file>
         <file>qmlsrc/Device.qml</file>
+        <file>qmlsrc/AciklamaEkle.qml</file>
+        <file>qmlsrc/FotoCek.qml</file>
     </qresource>
 </RCC>

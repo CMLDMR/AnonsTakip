@@ -4,6 +4,9 @@
 #include <QtCore/QObject>
 #include <QtCore/qglobal.h>
 
+#include <QDate>
+#include <QTime>
+
 
 class Utility : public QObject
 {
@@ -14,6 +17,11 @@ public:
 
     QString errorMessage() const;
     void setErrorMessage(const QString &errorMessage);
+
+
+    Q_INVOKABLE QString getTime() const;
+
+    Q_INVOKABLE qint64 getDate() const;
 
 signals:
     void errorMessageChanged(QString mesaj);
