@@ -37,10 +37,20 @@ Window {
         }
 
         Map {
+            id: map
             anchors.fill: parent
             plugin: mapPlugin
             center: QtPositioning.coordinate(36.91577, 31.10379) // Serik Belediye Binası
             zoomLevel: 15
+
+            Rectangle {
+                width: 10
+                height: 10
+                color: "DarkRed"
+                radius: 5
+                anchors.centerIn: parent
+            }
+
         }
     }
 
@@ -50,7 +60,7 @@ Window {
         color: "white"
         anchors.top: maprect.bottom
         Text {
-            text: qsTr("Cihaz Listesi")
+            text: qsTr("Anons Cihaz Listesi")
             font.bold: true
             font.pointSize: 10
             font.family: "Tahoma"
@@ -78,20 +88,71 @@ Window {
                     width: scroller.width
                     height: 50
                     color: "DarkSlateGray"
-                    Text {
-                        text: modelData.getElement("cihazadi").String
-                        font.bold: true
-                        font.pointSize: 10
-                        font.family: "Tahoma"
-                        color: "white"
-                        anchors.centerIn: parent
-                    }
-                    MouseArea{
+
+                    Row{
                         anchors.fill: parent
-                        onClicked: {
+                        Rectangle {
+                            width: parent.width/4*3
+                            height: parent.height
+                            color: "transparent"
+
+                            Text {
+                                text: modelData.getElement("cihazadi").String
+                                font.bold: true
+                                font.pointSize: 10
+                                font.family: "Tahoma"
+                                color: "white"
+                                anchors.centerIn: parent
+                            }
+                            MouseArea{
+                                anchors.fill: parent
+                                onClicked: {
+                                    loadDevice(modelData.getElement("_id").Oid);
+                                }
+                            }
+                        }
+
+                        Rectangle {
+                            width: parent.width/4
+                            height: parent.height
+                            color: "DarkGray"
+                            Text {
+                                text: qsTr("Konum Göster")
+                                font.bold: true
+                                font.pointSize: 10
+                                font.family: "Tahoma"
+                                color: "white"
+                                anchors.centerIn: parent
+                                width: parent.width
+                                wrapMode: Text.WordWrap
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+                            }
+
+                            MouseArea{
+                                anchors.fill: parent
+                                onClicked: {
+
+                                    var filter = QBSON.newBSON();
+
+                                    filter.addOid("_id",modelData.getElement("_id").Oid);
+
+                                    var dev = db.find_one("AnonsCihazlari",filter,QBSON.newBSON());
+
+
+                                    map.center = QtPositioning.coordinate(dev.getElement("latitute").Double,dev.getElement("longtitude").Double);
+                                    map.zoomLevel = 16;
+
+                                }
+                            }
+
 
                         }
+
+
                     }
+
+
                 }
             }
         }
@@ -156,6 +217,20 @@ Window {
                 errDialog.open(mesaj);
             })
         }
+    }
+
+
+
+    function loadDevice(oid){
+
+        var com = Qt.createComponent("qrc:/qmlsrc/Device.qml");
+
+        if( com.status === Component.Ready )
+        {
+            var e = com.createObject(root,{"oid":oid});
+        }
+
+
     }
 
 }
