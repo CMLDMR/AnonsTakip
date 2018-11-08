@@ -78,6 +78,25 @@ DISTFILES += \
     android/gradlew.bat \
     icon/x16.png \
     icon/x32.png \
-    icon/x48.png
+    icon/x48.png \
+    android/AndroidManifest.xml \
+    android/gradle/wrapper/gradle-wrapper.jar \
+    android/gradlew \
+    android/res/values/libs.xml \
+    android/build.gradle \
+    android/gradle/wrapper/gradle-wrapper.properties \
+    android/gradlew.bat \
+    icon/x16.png \
+    icon/x32.png \
+    icon/x48.png \
+    icon/x64.png \
+    icon/3D Logo.psd \
+    android/AndroidManifest.xml \
+    android/gradle/wrapper/gradle-wrapper.jar \
+    android/gradlew \
+    android/res/values/libs.xml \
+    android/build.gradle \
+    android/gradle/wrapper/gradle-wrapper.properties \
+    android/gradlew.bat
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
