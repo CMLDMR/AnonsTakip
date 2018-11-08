@@ -204,6 +204,8 @@ Item {
         QBSON.insertDouble( obj , "longtitude" , src.longtitude );
         QBSON.insertDouble( obj , "latitute" , src.latitude );
 
+        QBSON.insertString( obj , "durum" , "Çalışıyor" );
+
 
 
         if( db.insert_one(DBKey.collection,obj) )
