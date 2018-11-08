@@ -42,7 +42,7 @@ Item {
                         font.family: "Tahoma"
                         width: parent.width
                         height: parent.height
-                        text: "05326778051"
+//                        text: "05326778051"
                         Text {
                             text: qsTr("Telefon Numarası Giriniz")
                             font.bold: true
@@ -69,7 +69,7 @@ Item {
                         width: parent.width
                         height: parent.height
                         echoMode: TextInput.Password
-                        text: "64091"
+//                        text: "64091"
                         Text {
                             text: qsTr("Şifre Giriniz")
                             font.bold: true

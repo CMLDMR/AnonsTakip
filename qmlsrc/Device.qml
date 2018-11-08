@@ -62,6 +62,16 @@ Item {
                         color: "white"
                         anchors.centerIn: parent
                     }
+                    MouseArea{
+                        anchors.fill: parent
+                        onClicked: {
+                            var com = Qt.createComponent("qrc:/qmlsrc/FotoCek.qml");
+                            if( com.status === Component.Ready )
+                            {
+                                var e = com.createObject(item,{"oid":oid});
+                            }
+                        }
+                    }
                 }
 
                 Rectangle {
@@ -79,8 +89,6 @@ Item {
                     MouseArea{
                         anchors.fill: parent
                         onClicked: {
-
-
 
                             var com = Qt.createComponent("qrc:/qmlsrc/AciklamaEkle.qml");
 

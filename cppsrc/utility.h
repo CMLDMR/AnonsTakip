@@ -6,6 +6,8 @@
 
 #include <QDate>
 #include <QTime>
+#include <QUrl>
+#include <QFileInfo>
 
 
 class Utility : public QObject
@@ -22,6 +24,9 @@ public:
     Q_INVOKABLE QString getTime() const;
 
     Q_INVOKABLE qint64 getDate() const;
+
+    Q_INVOKABLE QString getRandomFileName( const QString& filePath );
+
 
 signals:
     void errorMessageChanged(QString mesaj);

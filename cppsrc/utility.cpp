@@ -27,3 +27,11 @@ qint64 Utility::getDate() const
 {
     return QDate::currentDate().toJulianDay();
 }
+
+QString Utility::getRandomFileName(const QString &filePath)
+{
+    QFileInfo info(filePath);
+
+    return QString::number(QDate::currentDate().toJulianDay())+QTime::currentTime().toString("hhmmsszzz");
+}
+
